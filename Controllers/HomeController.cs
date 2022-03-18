@@ -41,9 +41,9 @@ namespace BooksAndBooks.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBook(Book Book)
+        public IActionResult AddBook(Book book)
         {
-            _database.Books.Add(Book);
+            _database.Books.Add(book);
             _database.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -70,6 +70,10 @@ namespace BooksAndBooks.Controllers
 
             Book BookBD = _database.Books.First(Bookdb => Bookdb.Id == Book.Id);
             BookBD.Name = Book.Name;
+            BookBD.Author = Book.Author;
+            BookBD.PublishYear = Book.PublishYear;
+            BookBD.Category = Book.Category;
+            BookBD.Description = Book.Description;
             _database.SaveChanges();
             return RedirectToAction("Index");
         }

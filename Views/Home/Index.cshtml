@@ -27,6 +27,7 @@
             @foreach (var item in Model)
             {
                 <tr class="table">
+                    <th scope="row">@item.Name</th>
                     <th scope="row">@item.Author</th>
                     <td>@item.PublishYear</td>
                     <td>@item.Category</td>
