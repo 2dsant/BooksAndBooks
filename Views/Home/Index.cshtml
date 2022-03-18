@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BooksAndBooks.Models.Book>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="width: 80vh;">
+    <div style="margin-top: 20px;" class="text-left">
+        <h2>Books List</h2>
+    </div>
+
+    <a href="/Home/NewBook" class="btn btn-success" style="margin: 40px 0 40px 0">Insert new book</a>
+
+</div>
+<div class="text-center">
+    <table class="table table-striped">
+          <thead>
+            <tr>
+            <th scope="col" width="30px">Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Publish Year</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table">
+                    <th scope="row">@item.Author</th>
+                    <td>@item.PublishYear</td>
+                    <td>@item.Category</td>
+                    <td>
+                        <a href="#" class="btn btn-outline-info btn-editar" data-value="@item.Id">Edit</a>
+                        <a href="/Home/Delete/@item.Id" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>   
+            }
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Book</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>      </div>
+      <div class="modal-body">
+        <div id="conteudo-modal">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $(".btn-editar").click(function () {
+                var id = $(this).data("value");
+                $("#conteudo-modal").load("Home/EditModal/" + id, function () {
+                    $("#exampleModal").modal("show")
+                })
+            })
+        })
+    </script>
+}

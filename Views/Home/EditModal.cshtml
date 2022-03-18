@@ -1,0 +1,30 @@
+@model BooksAndBooks.Models.Book
+
+
+<div class="text-center">
+    <form asp-controler="Home" asp-action="Edit" method="POST">
+        <fieldset>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id">
+                
+                <label for="exampleTextarea">Description</label>
+                <textarea class="form-control" id="exampleTextarea" rows="3" asp-for="Description" value="@Model.Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                <label for="exampleSelect1">Status</label>
+                <select class="form-control" id="exampleSelect1" asp-for="Category" value="@Model.Category">
+                    <option value="1">Mystery</option>
+                    <option value="2">Drama</option>
+                    <option value="3">Fantasy</option>
+                    <option value="4">Romance</option>
+                    <option value="5">Suspense</option>
+                </select>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
